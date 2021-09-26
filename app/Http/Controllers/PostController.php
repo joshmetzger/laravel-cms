@@ -19,7 +19,6 @@ class PostController extends Controller
     public function show(Post $post){
 
         return view('blog-post', ['post' => $post]);
-
     }
 
     public function create(){
@@ -41,6 +40,12 @@ class PostController extends Controller
         auth()->user()->posts()->create($inputs);
 
         return back();
+    }
 
+    public function destroy(Post $post){
+        
+        $post->delete();
+
+        return back();
     }
 }
