@@ -11,6 +11,10 @@
 
             <div class="alert alert-success">{{Session::get('post-created-message')}}</div>
 
+            @elseif(Session::has('post-updated-message'))
+
+            <div class="alert alert-success">{{Session::get('post-updated-message')}}</div>
+
         @endif
 
         <div class="card shadow mb-4">
@@ -48,7 +52,7 @@
                       <tr>
                           <td>{{$post->id}}</td>
                           <td>{{$post->user->name}}</td>
-                          <td>{{$post->title}}</td>
+                          <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td>
                           <td><img width="100px" src="{{$post->post_image}}" alt=""></td>
                           <td>{{$post->created_at->diffForHumans()}}</td>
                           <td>{{$post->updated_at->diffForHumans()}}</td>
