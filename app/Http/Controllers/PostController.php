@@ -11,7 +11,7 @@ class PostController extends Controller
     //
     public function index(){
 
-        $posts = auth()->user()->posts;
+        $posts = auth()->user()->posts()->paginate(5);
 
         return view('admin.posts.index', ['posts'=> $posts]);
     }
@@ -23,6 +23,9 @@ class PostController extends Controller
     }
 
     public function create(){
+
+        $this->authorize('create', Post::class);
+
         return view('admin.posts.create');
     }
 
