@@ -31,6 +31,7 @@ class PostPolicy
     public function view(User $user, Post $post)
     {
         //
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -54,6 +55,8 @@ class PostPolicy
     public function update(User $user, Post $post)
     {
         //
+        return $user->id === $post->user_id;
+
     }
 
     /**
