@@ -37,7 +37,7 @@
                           <td>{{$post->id}}</td>
                           <td>{{$post->user->name}}</td>
                           <td>{{$post->title}}</td>
-                          <td><img height="40px" src="{{$post->post_image}}" alt=""></td>
+                          <td><div><img width="100px" src="{{$post->post_image}}" alt=""></div></td>
                           <td>{{$post->created_at->diffForHumans()}}</td>
                           <td>{{$post->updated_at->diffForHumans()}}</td>
                       </tr>
