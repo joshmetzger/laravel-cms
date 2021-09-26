@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post; 
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -45,6 +46,8 @@ class PostController extends Controller
     public function destroy(Post $post){
         
         $post->delete();
+
+        Session::flash('message', 'Post was deleted');
 
         return back();
     }
