@@ -40,7 +40,9 @@ class PostController extends Controller
 
         auth()->user()->posts()->create($inputs);
 
-        return back();
+        Session::flash('post-created-message', 'Post titled: ' . $inputs['title'] . ' -was created');
+
+        return redirect()->route('post.index');
     }
 
     public function destroy(Post $post){
