@@ -25,12 +25,11 @@ class UserController extends Controller
 
         ]);
 
-        $user->update($inputs);
-
-
         if(request('avatar')){
             $inputs['avatar'] = request('avatar')->store('images');
         }
+
+        $user->update($inputs);
 
         return back();
     }
