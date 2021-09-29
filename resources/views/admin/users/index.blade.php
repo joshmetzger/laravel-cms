@@ -5,6 +5,20 @@
 
         <h1>Users</h1>
 
+        @if(Session::has('user-deleted-message'))
+
+            <div class="alert alert-danger">{{Session::get('user-deleted-message')}}</div>
+
+            {{-- @elseif(Session::has('user-created-message'))
+
+            <div class="alert alert-success">{{Session::get('user-created-message')}}</div>
+
+            @elseif(Session::has('user-updated-message'))
+
+            <div class="alert alert-success">{{Session::get('user-updated-message')}}</div> --}}
+
+        @endif
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Users</h6>
@@ -49,15 +63,15 @@
                           <td>{{$user->updated_at->diffForHumans()}}</td>
                           <td>
 
-                            @can('view', $user)
+                            
 
-                              <form method="post" action="{{route('user.destroy', $user->id)}}" enctype="multipart/form-data">
+                              <form method="post" action="{{route('user.destroy', $user->id)}}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                               </form>
 
-                            @endcan  
+                            
 
                           </td>
                       </tr>
