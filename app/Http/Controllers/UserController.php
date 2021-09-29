@@ -28,8 +28,7 @@ class UserController extends Controller
             'name'=> ['required', 'string', 'max:255'],
             'email'=> ['required', 'email', 'max:255'],
             'avatar'=> ['file'],
-            
-
+    
         ]);
 
         if(request('avatar')){
@@ -37,6 +36,17 @@ class UserController extends Controller
         }
 
         $user->update($inputs);
+
+        return back();
+    }
+
+    public function destroy(User $user){
+
+        // $this->authorize('delete', $user);
+        
+        $user->delete();
+
+        // Session::flash('message', 'Post was deleted');
 
         return back();
     }
