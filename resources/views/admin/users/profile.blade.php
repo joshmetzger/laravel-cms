@@ -64,21 +64,19 @@
 
             <div class="col-sm-12">
 
-                <h1>Roles</h1>
-
-        @if(Session::has('user-deleted-message'))
+        {{-- @if(Session::has('user-deleted-message'))
 
             <div class="alert alert-danger">{{Session::get('user-deleted-message')}}</div>
 
-            {{-- @elseif(Session::has('user-created-message'))
+            @elseif(Session::has('user-created-message'))
 
             <div class="alert alert-success">{{Session::get('user-created-message')}}</div>
 
             @elseif(Session::has('user-updated-message'))
 
-            <div class="alert alert-success">{{Session::get('user-updated-message')}}</div> --}}
+            <div class="alert alert-success">{{Session::get('user-updated-message')}}</div>
 
-        @endif
+        @endif --}}
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -122,8 +120,41 @@
                           <td>{{$role->id}}</td>
                           <td>{{$role->name}}</td>
                           <td>{{$role->slug}}</td>
-                          <td><button class="btn btn-primary">Attach</button></td>
-                          <td><button class="btn btn-danger">Detach</button></td>
+                          <td>
+                                <form method="post" action="{{route('user.role.attach', $user)}}">
+                                    @method('PUT')
+                                    @csrf
+
+                                    <input type="hidden" name="role" value="{{$role->id}}">
+
+                                    <button type="submit" class="btn btn-primary"
+                                        @if($user->roles->contains($role))
+                                        disabled
+                                        @endif
+                                    >
+                                        Attach
+                                    </button>
+                                </form>
+
+                          </td>
+
+                          <td>
+                                <form method="post" action="{{route('user.role.detach', $user)}}">
+                                    @method('PUT')
+                                    @csrf
+
+                                    <input type="hidden" name="role" value="{{$role->id}}">
+
+                                    <button type="submit" class="btn btn-danger"
+                                    @if(!$user->roles->contains($role))
+                                        disabled
+                                        @endif
+                                    >
+                                        Detach
+                                    </button>
+                                </form>
+
+                      </td>
                       </tr>
 
                     @endforeach  
