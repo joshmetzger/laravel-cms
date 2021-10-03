@@ -53,28 +53,28 @@
                   <tbody>
 
                       @foreach($users as $user)
-                      <tr>
-                          <td>{{$user->id}}</td>
-                          <td>{{$user->username}}</td>
-                          <td><a href="{{route('user.profile.show', $user->id)}}">{{$user->name}}</a></td>
-                          <td>{{$user->email}}</td>
-                          <td><img width="100px" src="{{$user->avatar}}" alt="user-avatar"></td>
-                          <td>{{$user->created_at->diffForHumans()}}</td>
-                          <td>{{$user->updated_at->diffForHumans()}}</td>
-                          <td>
+                        <tr>
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->username}}</td>
+                            <td><a href="{{route('user.profile.show', $user->id)}}">{{$user->name}}</a></td>
+                            <td>{{$user->email}}</td>
+                            <td><img width="100px" src="{{$user->avatar}}" alt="user-avatar"></td>
+                            <td>{{$user->created_at->diffForHumans()}}</td>
+                            <td>{{$user->updated_at->diffForHumans()}}</td>
+                            <td>
 
-                            
+                              
 
-                              <form method="post" action="{{route('user.destroy', $user->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                              </form>
+                                <form method="post" action="{{route('user.destroy', $user->id)}}">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
 
-                            
+                              
 
-                          </td>
-                      </tr>
+                            </td>
+                        </tr>
                       @endforeach
 
                   </tbody>
