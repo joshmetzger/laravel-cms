@@ -138,7 +138,7 @@
 
                           </td>
 
-                          <td>
+                            <td>
                                 <form method="post" action="{{route('user.role.detach', $user)}}">
                                     @method('PUT')
                                     @csrf
@@ -154,7 +154,7 @@
                                     </button>
                                 </form>
 
-                      </td>
+                            </td>
                       </tr>
 
                     @endforeach  
