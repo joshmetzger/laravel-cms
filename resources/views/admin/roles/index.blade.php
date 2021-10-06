@@ -4,6 +4,20 @@
 
         {{-- <h6>Roles</h6> --}}
 
+        @if(Session::has('role-deleted-message'))
+
+            <div class="alert alert-danger">{{Session::get('role-deleted-message')}}</div>
+
+            @elseif(Session::has('role-created-message'))
+
+            <div class="alert alert-success">{{Session::get('role-created-message')}}</div>
+
+            @elseif(Session::has('role-updated-message'))
+
+            <div class="aler alert-success">{{Session::get('role-updated-message')}}</div>
+
+        @endif
+
         <div class="row">
             <div class="col-sm-3">
                 <form method="post" action="{{route('roles.store')}}">
@@ -37,8 +51,7 @@
                               <th>Id</th>
                               <th>Name</th>
                               <th>Slug</th>
-                              <th>Created At</th>
-                              <th>Updated At</th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tfoot>
@@ -46,8 +59,7 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Slug</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
+                                <th></th>
                             </tr>
                           </tfoot>
                           <tbody>
@@ -58,8 +70,13 @@
                                 <td>{{$role->id}}</td>
                                 <td>{{$role->name}}</td>
                                 <td>{{$role->slug}}</td>
-                                <td>{{$role->created_at->diffForHumans()}}</td>
-                                <td>{{$role->updated_at->diffForHumans()}}</td>
+                                <td>
+                                    <form method="post" action="{{route('roles.destroy', $role->id)}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr> 
                             @endforeach
                                
