@@ -2,7 +2,7 @@
 
     @section('content')
 
-        <h1>Permissions</h1>
+        <h6>Permissions</h6>
 
     @endsection
 
