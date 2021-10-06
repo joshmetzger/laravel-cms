@@ -33,6 +33,36 @@ class RoleController extends Controller
         return back();
     }
 
+    public function edit(Role $role){
+
+        return view('admin.roles.edit', ['role'=>$role]);
+
+    }
+
+    public function update(Role $role, Request $request){
+
+        // $inputs = request()->validate([
+        //     'name'=> ['required', 'string', 'max:255'],
+        // ]);
+
+        $role->name = Str::ucfirst(request('name'));
+        $role->slug = Str::of(request('name'))->slug('-');  
+        
+        if($role->isDirty('name')){
+
+            Session::flash('role-updated-message', 'Role Updated Succesfully: '.$role->name);
+
+            $role->save();
+
+        } else {
+
+            Session::flash('role-updated-message', 'Nothing has been updated');
+        }
+        
+        return back();
+
+    }
+
     public function destroy(Role $role){
         
         $role->delete();
