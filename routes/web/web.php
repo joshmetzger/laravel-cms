@@ -25,6 +25,11 @@ Route::middleware('auth')->group(function(){
     
     Route::get('/admin', [App\Http\Controllers\AdminsController::class, 'index'])->name('admin.index');
 
+
+    Route::get('admin/comments', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index');
+
+    Route::get('admin/comment/replies', [App\Http\Controllers\ReplyController::class, 'index'])->name('replies.index');
+
 });
 
 
