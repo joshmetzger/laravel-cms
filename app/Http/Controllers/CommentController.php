@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Reply;
+use Illuminate\Support\Facades\Session;
 
 class CommentController extends Controller
 {
@@ -13,17 +15,12 @@ class CommentController extends Controller
 
         $comments = Comment::all();
 
+        // $comments = auth()->user()->comments()->paginate(5);
+
         return view('admin.comments.index', ['comments'=>$comments]);
     }
 
     public function store(Request $request){
-
-        // $inputs = request()->validate([
-        //     'post_id'=>'required',
-        //     'author'=>'required|min:8|max:255',
-        //     'email'=>'required',
-        //     'body'=> 'required'
-        // ]);
 
         Comment::create([
             'post_id'=>request('post_id'),
@@ -32,7 +29,25 @@ class CommentController extends Controller
             'body'=>request('body'),
         ]);
 
-        // Comment::create($inputs->all());
+        Session::flash('comment-created-message', 'Comment was added successfully.');
+
+        return back();
+    }
+
+    public function update(Request $request, Comment $comment){
+
+        $comment->is_active = request('is_active');
+
+        $comment->save();
+        
+        return back();
+    }
+
+    public function destroy(Comment $comment){
+
+        // $this->authorize('delete', $comment);
+        
+        $comment->delete();
 
         return back();
     }
