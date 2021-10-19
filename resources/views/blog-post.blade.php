@@ -14,7 +14,7 @@
         <hr>
 
         <!-- Date/Time -->
-        <p>Posted on {{$post->created_at->diffForHumans()}}</p>
+        <p>Posted {{$post->created_at->diffForHumans()}}</p>
 
         <hr>
 
@@ -28,18 +28,31 @@
         
         <hr>
 
+
+        @if(auth()->user())
+
         <!-- Comments Form -->
         <div class="card my-4">
           <h5 class="card-header">Leave a Comment:</h5>
           <div class="card-body">
-            <form>
+
+            <form method="post" action="{{route('comment.store')}}" enctype="multipart/form-data">
+              @csrf
+
+              <input type="hidden" name="post_id" value="{{$post->id}}">
+              <input type="hidden" name="author" value="{{$post->user->name}}">
+              <input type="hidden" name="email" value="{{$post->user->email}}">
+
               <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea name="body" id="body" class="form-control" rows="3"></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+
           </div>
         </div>
+
+        @endif
 
         <!-- Single Comment -->
         <div class="media mb-4">

@@ -56,17 +56,22 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+
+      <!-- Nav Item - Posts -->
       <x-admin.sidebar.admin-sidebar-posts-links></x-admin-sidebar-posts-links>
 
 
       @if(auth()->user()->userHasRole('Admin'))
+
+          <!-- Nav Item - Users -->
           <x-admin.sidebar.admin-sidebar-users-links></x-admin-sidebar-users-links>
+
+          <!-- Nav Item - Authorizations -->  
           <x-admin.sidebar.authorization-links></x-admin-authorization-links>
+
       @endif
 
        
-      
-
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
