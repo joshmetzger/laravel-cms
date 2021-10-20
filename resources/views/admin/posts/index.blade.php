@@ -30,9 +30,9 @@
                       <th>Author</th>
                       <th>Title</th>
                       <th>Image</th>
-                      <th>Created At</th>
-                      <th>Updated At</th>
-                      <th>View Comments</th>
+                      <th>Created</th>
+                      <th>Updated</th>
+                      <th>Comments</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
@@ -44,7 +44,7 @@
                         <th>Image</th>
                         <th>Created At</th>
                         <th>Updated At</th>
-                        <th>View Comments</th>
+                        <th>Comments</th>
                         <th>Delete</th>
                     </tr>
                   </tfoot>

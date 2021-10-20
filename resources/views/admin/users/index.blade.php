@@ -33,8 +33,8 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Avatar</th>
-                      <th>Created At</th>
-                      <th>Updated At</th>
+                      <th>Created</th>
+                      <th>Updated</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
@@ -45,8 +45,8 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Avatar</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>Created</th>
+                        <th>Updated</th>
                         <th>Delete</th>
                     </tr>
                   </tfoot>

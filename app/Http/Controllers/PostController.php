@@ -19,9 +19,13 @@ class PostController extends Controller
     }
 
 
-    public function show(Post $post){
+    public function show($id){
 
-        return view('blog-post', compact('post'));
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments()->whereIsActive(1)->get();
+
+        return view('blog-post', compact('post', 'comments'));
     }
 
     public function create(){
@@ -59,17 +63,6 @@ class PostController extends Controller
         return view('admin.posts.edit', ['post'=> $post]);
     }
 
-    public function destroy(Post $post){
-
-        $this->authorize('delete', $post);
-        
-        $post->delete();
-
-        Session::flash('message', 'Post was deleted');
-
-        return back();
-    }
-
     public function update(Post $post){
         
         $inputs = request()->validate([
@@ -94,5 +87,16 @@ class PostController extends Controller
         Session::flash('post-updated-message', 'Post updated');
 
         return redirect()->route('post.index');
+    }
+
+    public function destroy(Post $post){
+
+        $this->authorize('delete', $post);
+        
+        $post->delete();
+
+        Session::flash('message', 'Post was deleted');
+
+        return back();
     }
 }
