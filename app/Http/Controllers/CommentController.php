@@ -43,6 +43,23 @@ class CommentController extends Controller
         return back();
     }
 
+    // public function showPostComments(Comment $comment, Post $post){
+
+    //     $comments = Comment::all();
+    //     $posts = Post::all();
+
+    //     return view('admin.comments.post-comments', ['posts'=>$posts]);
+    // }
+
+    public function showPostComments($id){
+
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments;
+
+        return view('admin.comments.post-comments', ['comments'=>$comments]);
+    }
+
     public function destroy(Comment $comment){
 
         // $this->authorize('delete', $comment);

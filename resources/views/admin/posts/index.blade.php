@@ -32,6 +32,7 @@
                       <th>Image</th>
                       <th>Created At</th>
                       <th>Updated At</th>
+                      <th>View Comments</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
@@ -43,6 +44,7 @@
                         <th>Image</th>
                         <th>Created At</th>
                         <th>Updated At</th>
+                        <th>View Comments</th>
                         <th>Delete</th>
                     </tr>
                   </tfoot>
@@ -56,6 +58,7 @@
                           <td><img width="100px" src="{{$post->post_image}}" alt=""></td>
                           <td>{{$post->created_at->diffForHumans()}}</td>
                           <td>{{$post->updated_at->diffForHumans()}}</td>
+                          <td><a href="{{route('post.comments.show', $post->id)}}">View Comments</a></td>
                           <td>
 
                             @can('view', $post)

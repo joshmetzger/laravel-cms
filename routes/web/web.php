@@ -30,11 +30,15 @@ Route::middleware('auth')->group(function(){
 
     Route::get('admin/comments', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index');
 
+    Route::get('post/{post}/comments', [App\Http\Controllers\CommentController::class, 'showPostComments'])->name('post.comments.show');
+
     Route::patch('comments/{comment}/update', [App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
     
     Route::delete('/comments/{comment}/destroy', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comment.destroy');
 
-    Route::get('admin/comment/replies', [App\Http\Controllers\ReplyController::class, 'index'])->name('replies.index');
+    
+    
+    Route::get('admin/{comment}/replies', [App\Http\Controllers\ReplyController::class, 'index'])->name('replies.index');
 
 });
 
