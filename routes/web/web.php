@@ -23,6 +23,10 @@ Route::get('/post/{post}', [App\Http\Controllers\PostController::class, 'show'])
 
 Route::post('/post', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
 
+Route::patch('/post', [App\Http\Controllers\ReplyController::class, 'store'])->name('reply.store');
+
+
+
 Route::middleware('auth')->group(function(){
     
     Route::get('/admin', [App\Http\Controllers\AdminsController::class, 'index'])->name('admin.index');

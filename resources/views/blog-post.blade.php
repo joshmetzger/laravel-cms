@@ -72,14 +72,47 @@
 
         @foreach($comments as $comment)
         
-          <!-- Single Comment -->
-          <div class="media mb-4">
-            <img class="d-flex mr-3 img-profile rounded-circle" style="height: 46px;" src="{{$comment->post->user->avatar}}" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">{{$comment->author}}</h5>
-              {{$comment->body}}
+            <!-- Single Comment -->
+            <div class="media mb-4">
+              <img class="d-flex mr-3 img-profile rounded-circle" style="height: 46px;" src="{{$comment->post->user->avatar}}" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">{{$comment->author}}
+                  <small>{{$comment->created_at->diffForHumans()}}</small></h5>   
+                <p>{{$comment->body}}</p>
+
+                <!--  Reply -->
+                <div class="media mt-4">
+                  <img class="d-flex mr-3 rounded-circle" style="height: 32px;" src="http://placehold.it/50x50" alt="">
+                  <div class="media-body">
+                    <h5 class="mt-0">Commenter Name</h5>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                  </div>
+
+                    <!--  Reply form may eventually need to be here -->
+
+                </div>
+
+                <form method="post" action="{{route('reply.store')}}">
+                  @csrf
+                  @method('PATCH')
+
+                  {{-- <input type="hidden" name="comment_id" value="{{}}">
+                  <input type="hidden" name="author" value="{{}}">
+                  <input type="hidden" name="email" value="{{}}"> --}}
+
+                  <div class="form-group">
+                    <label for="body">Body</label>
+                    <textarea name="body" id="body" cols="75" rows="1"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+
+                </form>
+
+              </div>
             </div>
-          </div>
 
           @endforeach
 
@@ -87,7 +120,7 @@
 
         {{-- <!-- Single Comment -->
         <div class="media mb-4">
-          <img class="d-flex mr-3 img-profile rounded-circle" style="height: 46px;" src="{{auth()->user()->avatar}}" alt="">
+          <img class="d-flex mr-3 img-profile rounded-circle" style="height: 46px;" src="{{$comment->post->user->avatar}}" alt="">
           <div class="media-body">
             <h5 class="mt-0">Commenter Name</h5>
             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.

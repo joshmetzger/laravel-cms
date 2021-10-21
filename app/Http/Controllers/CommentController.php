@@ -29,7 +29,7 @@ class CommentController extends Controller
             'body'=>request('body'),
         ]);
 
-        Session::flash('comment-created-message', 'Comment was added successfully.');
+        Session::flash('comment-created-message', 'Comment was submitted and awaiting moderation.');
 
         return back();
     }
