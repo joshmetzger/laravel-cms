@@ -6,15 +6,15 @@
 
             <div class="alert alert-success">{{Session::get('comment-created-message')}}</div>
 
-            {{-- @elseif(Session::has('post-created-message'))
+            @elseif(Session::has('post-created-message'))
 
-            <div class="alert alert-success">{{Session::get('post-created-message')}}</div>
+            <div class="alert alert-success">{{Session::get('reply-created-message')}}</div>
 
-            @elseif(Session::has('post-updated-message'))
+            {{-- @elseif(Session::has('post-updated-message'))
 
             <div class="alert alert-success">{{Session::get('post-updated-message')}}</div> --}}
 
-        @endif
+    @endif
 
         <!-- Title -->
         <h1 class="mt-4">{{$post->title}}</h1>
@@ -69,7 +69,6 @@
         @endif
 
         @if(count($comments) > 0)
-
         @foreach($comments as $comment)
         
             <!-- Single Comment -->
@@ -79,12 +78,15 @@
                 <h5 class="mt-0">{{$comment->author}}
                   <small>{{$comment->created_at->diffForHumans()}}</small></h5>   
                 <p>{{$comment->body}}</p>
+                
+                {{-- @if(count($replies) > 0)
+                @foreach($replies as $reply) --}}
 
                 <!--  Reply -->
                 <div class="media mt-4">
                   <img class="d-flex mr-3 rounded-circle" style="height: 32px;" src="http://placehold.it/50x50" alt="">
                   <div class="media-body">
-                    <h5 class="mt-0">Commenter Name</h5>
+                    <h5 class="mt-0">Author</h5>
                     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                   </div>
 
@@ -92,24 +94,31 @@
 
                 </div>
 
-                <form method="post" action="{{route('reply.store')}}">
-                  @csrf
-                  @method('PATCH')
+                @if(auth()->user())
 
-                  {{-- <input type="hidden" name="comment_id" value="{{}}">
-                  <input type="hidden" name="author" value="{{}}">
-                  <input type="hidden" name="email" value="{{}}"> --}}
+                  <form method="post" action="{{route('reply.store')}}">
+                    @csrf
+                    @method('PATCH')
 
-                  <div class="form-group">
-                    <label for="body">Body</label>
-                    <textarea name="body" id="body" cols="75" rows="1"></textarea>
-                  </div>
+                    <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                    {{-- <input type="hidden" name="author" value="{{$comment->author}}">
+                    <input type="hidden" name="email" value="{{$comment->email}}"> --}}
 
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
+                    <div class="form-group">
+                      <label for="body">Body</label>
+                      <textarea name="body" id="body" cols="75" rows="1"></textarea>
+                    </div>
 
-                </form>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                  </form>
+
+                  {{-- @endif
+                  @endforeach --}}
+
+                @endif
 
               </div>
             </div>

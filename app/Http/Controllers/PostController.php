@@ -25,6 +25,10 @@ class PostController extends Controller
 
         $comments = $post->comments()->whereIsActive(1)->get();
 
+        // $comment = Comment::findOrFail($id);
+
+        // $replies = $comment->replies()->whereIsActive(1)->get();
+
         return view('blog-post', compact('post', 'comments'));
     }
 
