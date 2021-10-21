@@ -79,15 +79,16 @@
                   <small>{{$comment->created_at->diffForHumans()}}</small></h5>   
                 <p>{{$comment->body}}</p>
                 
-                {{-- @if(count($replies) > 0)
-                @foreach($replies as $reply) --}}
+                @if(count($comment->replies) > 0)
+                @foreach($comment->replies as $reply)
 
                 <!--  Reply -->
                 <div class="media mt-4">
-                  <img class="d-flex mr-3 rounded-circle" style="height: 32px;" src="http://placehold.it/50x50" alt="">
+                  <img class="d-flex mr-3 rounded-circle" style="height: 32px;" src="{{$comment->post->user->avatar}}" alt="">
                   <div class="media-body">
-                    <h5 class="mt-0">Author</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    <h5 class="mt-0">{{$reply->author}}</h5>
+                      <small>{{$reply->created_at->diffForHumans()}}</small></h5> 
+                    <p>{{$reply->body}}</p>
                   </div>
 
                     <!--  Reply form may eventually need to be here -->
@@ -101,11 +102,9 @@
                     @method('PATCH')
 
                     <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                    {{-- <input type="hidden" name="author" value="{{$comment->author}}">
-                    <input type="hidden" name="email" value="{{$comment->email}}"> --}}
 
                     <div class="form-group">
-                      <label for="body">Body</label>
+                      <label for="body">Reply: </label>
                       <textarea name="body" id="body" cols="75" rows="1"></textarea>
                     </div>
 
@@ -115,8 +114,8 @@
 
                   </form>
 
-                  {{-- @endif
-                  @endforeach --}}
+                  @endif
+                  @endforeach
 
                 @endif
 
