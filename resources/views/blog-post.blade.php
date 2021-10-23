@@ -80,43 +80,54 @@
                 <p>{{$comment->body}}</p>
                 
                 @if(count($comment->replies) > 0)
-                @foreach($comment->replies as $reply)
+                  @foreach($comment->replies as $reply)
 
-                <!--  Reply -->
-                <div class="media mt-4">
-                  <img class="d-flex mr-3 rounded-circle" style="height: 32px;" src="{{$comment->post->user->avatar}}" alt="">
-                  <div class="media-body">
-                    <h5 class="mt-0">{{$reply->author}}</h5>
-                      <small>{{$reply->created_at->diffForHumans()}}</small></h5> 
-                    <p>{{$reply->body}}</p>
-                  </div>
+                    
 
-                    <!--  Reply form may eventually need to be here -->
+                      <!--  Reply -->
+                      <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" style="height: 32px;" src="{{$comment->post->user->avatar}}" alt="">
+                        <div class="media-body">
+                          <h5 class="mt-0">{{$reply->author}}</h5>
+                            <small>{{$reply->created_at->diffForHumans()}}</small></h5> 
+                          <p>{{$reply->body}}</p>
+                        </div>
 
-                </div>
+                          <!--  Reply form may eventually need to be here -->
 
-                @if(auth()->user())
+                      </div>
 
-                  <form method="post" action="{{route('reply.store')}}">
-                    @csrf
-                    @method('PATCH')
+                      <div class="reply-container">
+                        <button class="toggle-reply btn btn-primary pull-right">Reply</button>
 
-                    <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                          <div class="reply-form">
 
-                    <div class="form-group">
-                      <label for="body">Reply: </label>
-                      <textarea name="body" id="body" cols="75" rows="1"></textarea>
+                              @if(auth()->user())
+
+                                <form method="post" action="{{route('reply.store')}}">
+                                  @csrf
+                                  @method('PATCH')
+
+                                  <input type="hidden" name="comment_id" value="{{$comment->id}}">
+
+                                  <div class="form-group">
+                                    {{-- <label for="body">Reply: </label> --}}
+                                    <textarea name="body" id="body" cols="60" rows="1"></textarea>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                  </div>
+
+                                </form>
+
+                              @endif
+
+                          </div>
+
                     </div>
-
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-
-                  </form>
-
-                  @endif
+                  
                   @endforeach
-
                 @endif
 
               </div>
@@ -160,6 +171,20 @@
 
           </div>
         </div> --}}
+
+    @endsection
+
+    @section('scripts')
+
+        <script>
+          $(".reply-form .toggle-reply").click(function(){
+
+            $(this).next().slideToggle("slow");
+
+          });
+        </script>
+
+        
 
     @endsection
 

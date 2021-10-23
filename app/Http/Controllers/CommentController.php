@@ -22,10 +22,12 @@ class CommentController extends Controller
 
     public function store(Request $request){
 
+        $user = auth()->user();
+
         Comment::create([
             'post_id'=>request('post_id'),
-            'author'=>request('author'),
-            'email'=>request('email'),
+            'author'=>$user->name,
+            'email'=>$user->email,
             'body'=>request('body'),
         ]);
 
