@@ -68,6 +68,7 @@
 
         @endif
 
+        <!-- Active Posted Comments -->
         @if(count($comments) > 0)
         @foreach($comments as $comment)
         
@@ -81,10 +82,10 @@
                 
                 @if(count($comment->replies) > 0)
                   @foreach($comment->replies as $reply)
+           
+                    @if($reply->is_active == 1)
 
-                    
-
-                      <!--  Reply -->
+                      <!--  Active Posted Replies -->
                       <div class="media mt-4">
                         <img class="d-flex mr-3 rounded-circle" style="height: 32px;" src="{{$comment->post->user->avatar}}" alt="">
                         <div class="media-body">
@@ -96,11 +97,12 @@
                           <!--  Reply form may eventually need to be here -->
 
                       </div>
-
+                     
+                      <!--  Reply Form -->
                       <div class="reply-container">
-                        <button class="toggle-reply btn btn-primary pull-right">Reply</button>
+                        <button class="toggle-reply btn btn-primary" id="toggle-reply">Reply</button>
 
-                          <div class="reply-form">
+                          <div class="reply-form" id="reply-form" style="display: none;">
 
                               @if(auth()->user())
 
@@ -126,6 +128,8 @@
                           </div>
 
                     </div>
+
+                    @endif 
                   
                   @endforeach
                 @endif
@@ -172,19 +176,14 @@
           </div>
         </div> --}}
 
-    @endsection
-
-    @section('scripts')
-
-        <script>
-          $(".reply-form .toggle-reply").click(function(){
-
-            $(this).next().slideToggle("slow");
-
-          });
-        </script>
-
+        <script type="text/javascript">
         
+          $("#toggle-reply").click(function()
+          {
+            $("#reply-form").show();
+          });
+        
+        </script>
 
     @endsection
 

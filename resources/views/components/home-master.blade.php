@@ -20,7 +20,11 @@
   <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
   <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
 
-  
+  <script src="js/jquery.js"></script>
+  <script src="{‌{asset('js/libs.js')}}"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body>
