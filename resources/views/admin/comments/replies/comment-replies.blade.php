@@ -5,7 +5,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Comments Table</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Replies Table</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -13,13 +13,12 @@
                   <thead>
                     <tr>
                       {{-- <th>Id</th> --}}
-                      <th>Post Id</th>
+                      <th>Comment Id</th>
                       <th>Is Active</th>
                       <th>Author</th>
                       <th>Email</th>
                       <th>Body</th>
                       {{-- <th>Created At</th> --}}
-                      <th>No. of Replies</th>
                       <th>Active</th>
                       <th>Delete</th>
                     </tr>
@@ -27,35 +26,33 @@
                   <tfoot>
                     <tr>
                         {{-- <th>Id</th> --}}
-                        <th>Post Id</th>
-                        <th>Is Active</th>
-                        <th>Author</th>
-                        <th>Email</th>
-                        <th>Body</th>
-                        {{-- <th>Created At</th> --}}
-                        <th>No. of Replies</th>
-                        <th>Active</th>
-                        <th>Delete</th>
+                      <th>Comment Id</th>
+                      <th>Is Active</th>
+                      <th>Author</th>
+                      <th>Email</th>
+                      <th>Body</th>
+                      {{-- <th>Created At</th> --}}
+                      <th>Active</th>
+                      <th>Delete</th>
                     </tr>
                   </tfoot>
                   <tbody>
     
-                      @foreach($comments as $comment)
+                      @foreach($replies as $reply)
                       <tr>
                             {{-- <td>{{$comment->id}}</td> --}}
-                            <td>{{$comment->post_id}}</td>
+                            <td>{{$reply->comment_id}}</td>
                             {{-- <td><a href="{{route('post.edit', $post->id)}}">{{$post->title}}</a></td> --}}
-                            <td>{{$comment->is_active}}</td>
-                            <td>{{$comment->author}}</td>
-                            <td>{{$comment->email}}</td>
-                            <td>{{$comment->body}}</td>
+                            <td>{{$reply->is_active}}</td>
+                            <td>{{$reply->author}}</td>
+                            <td>{{$reply->email}}</td>
+                            <td>{{$reply->body}}</td>
                             {{-- <td>{{$comment->created_at}}</td> --}}
-                            <td> <a href="{{route('comment.replies.show', $comment->id)}}">{{count($comment->replies)}}</a></td>
     
                             <td>
-                                @if($comment->is_active == 1)
+                                @if($reply->is_active == 1)
     
-                                    <form method="post" action="{{route('comment.update', $comment->id)}}">
+                                    <form method="post" action="{{route('reply.update', $reply->id)}}">
                                         @csrf
                                         @method('PATCH')
                                     
@@ -66,7 +63,7 @@
                                     
                                     @else
     
-                                    <form method="post" action="{{route('comment.update', $comment->id)}}">
+                                    <form method="post" action="{{route('reply.update', $reply->id)}}">
                                         @csrf
                                         @method('PATCH')
                                     
@@ -82,7 +79,7 @@
     
                                 
     
-                                <form method="post" action="{{route('comment.destroy', $comment->id)}}" enctype="multipart/form-data">
+                                <form method="post" action="{{route('reply.destroy', $reply->id)}}" enctype="multipart/form-data">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>

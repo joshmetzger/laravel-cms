@@ -78,7 +78,7 @@
               <div class="media-body">
                 <h5 class="mt-0">{{$comment->author}}
                   <small>{{$comment->created_at->diffForHumans()}}</small></h5>   
-                <p>{{$comment->body}}</p>
+                <p>{{$comment->body}}<button class="toggle-reply btn btn-primary" id="toggle-reply">Reply</button></p>
                 
                 @if(count($comment->replies) > 0)
                   @foreach($comment->replies as $reply)
@@ -93,15 +93,12 @@
                             <small>{{$reply->created_at->diffForHumans()}}</small></h5> 
                           <p>{{$reply->body}}</p>
                         </div>
-
-                          <!--  Reply form may eventually need to be here -->
-
                       </div>
+
+                    @endif   
                      
                       <!--  Reply Form -->
-                      <div class="reply-container">
-                        <button class="toggle-reply btn btn-primary" id="toggle-reply">Reply</button>
-
+                        <!--  Button was here I think. it is now next to p in comments loop -->
                           <div class="reply-form" id="reply-form" style="display: none;">
 
                               @if(auth()->user())
@@ -127,10 +124,6 @@
 
                           </div>
 
-                    </div>
-
-                    @endif 
-                  
                   @endforeach
                 @endif
 

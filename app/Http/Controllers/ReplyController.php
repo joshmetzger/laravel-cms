@@ -29,4 +29,31 @@ class ReplyController extends Controller
         return back();
 
     }
+
+    public function showCommentReplies($id){
+
+        $comment = Comment::findOrFail($id);
+
+        $replies = $comment->replies;
+
+        return view('admin.comments.replies.comment-replies', ['replies'=>$replies]);
+
+    }
+
+    public function update(Request $request, Reply $reply){
+
+        $reply->is_active = request('is_active');
+
+        $reply->save();
+        
+        return back();
+
+    }
+
+    public function destroy(Reply $reply){
+
+        $reply->delete();
+
+        return back();
+    }
 }

@@ -36,9 +36,15 @@ Route::middleware('auth')->group(function(){
 
     Route::get('post/{post}/comments', [App\Http\Controllers\CommentController::class, 'showPostComments'])->name('post.comments.show');
 
+    Route::get('comments/{comment}/replies', [App\Http\Controllers\ReplyController::class, 'showCommentReplies'])->name('comment.replies.show');
+
     Route::patch('comments/{comment}/update', [App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
+
+    Route::patch('replies/{reply}/update', [App\Http\Controllers\ReplyController::class, 'update'])->name('reply.update');
     
     Route::delete('/comments/{comment}/destroy', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comment.destroy');
+
+    Route::delete('/replies/{reply}/destroy', [App\Http\Controllers\ReplyController::class, 'destroy'])->name('reply.destroy');
 
     
     

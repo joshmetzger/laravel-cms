@@ -19,6 +19,7 @@
                   <th>Email</th>
                   <th>Body</th>
                   {{-- <th>Created At</th> --}}
+                  <th>Replies</th>
                   <th>Active</th>
                   <th>Delete</th>
                 </tr>
@@ -32,6 +33,7 @@
                     <th>Email</th>
                     <th>Body</th>
                     {{-- <th>Created At</th> --}}
+                    <th>Replies</th>
                     <th>Active</th>
                     <th>Delete</th>
                 </tr>
@@ -47,6 +49,7 @@
                         <td>{{$comment->author}}</td>
                         <td>{{$comment->email}}</td>
                         <td>{{$comment->body}}</td>
+                        <td><a href="{{route('comment.replies.show', $comment->id)}}">View Replies</a></td>
                         {{-- <td>{{$comment->created_at}}</td> --}}
 
                         <td>
