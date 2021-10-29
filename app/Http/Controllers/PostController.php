@@ -13,7 +13,7 @@ class PostController extends Controller
     //
     public function index(){
 
-        $posts = auth()->user()->posts()->paginate(5);
+        $posts = auth()->user()->posts()->paginate(10);
 
         return view('admin.posts.index', ['posts'=> $posts]);
     }

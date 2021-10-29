@@ -15,7 +15,7 @@ class CommentController extends Controller
 
         $comments = Comment::all();
 
-        // $comments = auth()->user()->comments()->paginate(5);
+        // $comments = auth()->user()->comments()->paginate(10);
 
         return view('admin.comments.index', ['comments'=>$comments]);
     }
