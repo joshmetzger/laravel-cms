@@ -19,6 +19,7 @@
                       <th>Email</th>
                       <th>Body</th>
                       {{-- <th>Created At</th> --}}
+                      <th>View Post</th>
                       <th>Active</th>
                       <th>Delete</th>
                     </tr>
@@ -32,6 +33,7 @@
                       <th>Email</th>
                       <th>Body</th>
                       {{-- <th>Created At</th> --}}
+                      <th>View Post</th>
                       <th>Active</th>
                       <th>Delete</th>
                     </tr>
@@ -47,6 +49,7 @@
                             <td>{{$reply->author}}</td>
                             <td>{{$reply->email}}</td>
                             <td>{{$reply->body}}</td>
+                            <td><a href="{{route('post', $reply->comment->post->id)}}">View Post</a></td>
                             {{-- <td>{{$comment->created_at}}</td> --}}
     
                             <td>
