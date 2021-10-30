@@ -87,7 +87,7 @@
 
       </div>
 
-      <!-- Sidebar Widgets Column -->
+      <!-- Right Sidebar Column -->
       <div class="col-md-4">
 
         <!-- Search Widget -->

@@ -93,9 +93,9 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      {{-- <div class="sidebar-heading">
         Addons
-      </div>
+      </div> --}}
 
       <!-- Nav Item - Pages Collapse Menu -->
       {{-- <li class="nav-item active">
@@ -118,7 +118,7 @@
       </li> --}}
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
@@ -129,7 +129,7 @@
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
-      </li>
+      </li> --}}
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

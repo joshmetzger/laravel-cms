@@ -100,11 +100,11 @@
         </div>
       </div>
 
-      {{-- <div class="d-flex">
+      <div class="d-flex">
         <div class="mx-auto">
             {{$comments->links('pagination::bootstrap-4')}}
         </div>
-    </div> --}}
+    </div>
 
     @endsection
 

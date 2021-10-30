@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <h1 class="my-4">Page Heading
+    <h1 class="my-4">All Posts
         <small>Secondary Text</small>
       </h1>
 

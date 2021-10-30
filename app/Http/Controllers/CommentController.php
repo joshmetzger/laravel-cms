@@ -13,7 +13,7 @@ class CommentController extends Controller
     //
     public function index(){
 
-        $comments = Comment::all();
+        $comments = Comment::paginate(5);
 
         // $comments = auth()->user()->comments()->paginate(10);
 
