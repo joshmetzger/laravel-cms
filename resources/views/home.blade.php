@@ -27,6 +27,13 @@
 
 
       <!-- Pagination -->
+
+      {{-- <div class="d-flex">
+        <div class="mx-auto">
+            {{$posts->links('pagination::bootstrap-4')}}
+        </div>
+      </div> --}}
+
       <ul class="pagination justify-content-center mb-4">
         <li class="page-item">
           <a class="page-link" href="#">&larr; Older</a>
